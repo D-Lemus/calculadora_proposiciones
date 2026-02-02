@@ -1,5 +1,5 @@
 import tkinter as tk
-import logic
+import git_logica.calculadora_proposiciones.logic as logic
 
 window = tk.Tk()
 window.title("Calculadora Logica")
