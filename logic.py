@@ -9,7 +9,7 @@ def validar_parentesis(segregacion: list[str]) -> bool:
     counter = 0
 
     for i in range(len(segregacion)):
-        if counter > 0:
+        if counter >= 0:
             if segregacion[i] == "(":
                 counter+=1
             elif segregacion[i] == ")":
@@ -49,7 +49,6 @@ def traducir_proposicion(proposicion:str, variables: dict[str, str]) -> bool:
         
 
 
-
 proposicion = "not ( p and q ) or r"
 
 segregacion = segregate(proposicion)
@@ -58,8 +57,10 @@ print(segregacion)
 validador = validar_parentesis(segregacion)
 
 variables = encontrar_variables(segregacion)
-variables_definidas = {'r': 'True', 'q': 'False', 'p': 'True'}
+variables_definidas = definir_variables(variables)
 print(variables_definidas)
 print("==========================================\n")
 traduccion = traducir_proposicion(proposicion,variables_definidas)
 print(traduccion)
+
+

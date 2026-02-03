@@ -1,5 +1,5 @@
 import tkinter as tk
-import git_logica.calculadora_proposiciones.logic as logic
+
 
 window = tk.Tk()
 window.title("Calculadora Logica")
@@ -68,7 +68,7 @@ boton_entonces.pack(side=tk.LEFT, padx=5)
 boton_entonces = tk.Button(window, text="(",width=2, command=lambda:add('( '))
 boton_entonces.pack(side=tk.LEFT, padx=5)
 
-boton_entonces = tk.Button(window, text="(",width=2, command=lambda:add(' )'))
+boton_entonces = tk.Button(window, text=")",width=2, command=lambda:add(' )'))
 boton_entonces.pack(side=tk.LEFT, padx=5)
 
 
