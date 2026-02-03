@@ -68,7 +68,7 @@ boton_entonces.pack(side=tk.LEFT, padx=5)
 boton_entonces = tk.Button(window, text="(",width=2, command=lambda:add('( '))
 boton_entonces.pack(side=tk.LEFT, padx=5)
 
-boton_entonces = tk.Button(window, text=")",width=2, command=lambda:add(' )'))
+boton_entonces = tk.Button(window, text="",width=2, command=lambda:add(' )'))
 boton_entonces.pack(side=tk.LEFT, padx=5)
 
 
