@@ -28,7 +28,19 @@ def encontrar_variables(segregacion: list[str]) -> set[str]:
 def traducir_proposicion(proposicion:str, var_def: dict[str, bool]) -> bool:
     print(proposicion)
     for var, val in var_def.items():
-        proposicion = re.sub(rf"\b{var}\b",val,proposicion)
+        proposicion = re.sub(rf"\b{var}\b",str(val),proposicion)
+
+    proposicion = proposicion.replace('¬','not ')
+    proposicion = proposicion.replace('∧',' and ')
+    proposicion = proposicion.replace('∨',' or ')
+    proposicion = proposicion.replace('→',' <= ')
+    proposicion = proposicion.replace('↔',' == ')
+
+    return proposicion
+def traducir_proposicion(proposicion:str, var_def: dict[str, bool]) -> bool:
+    print(proposicion)
+    for var, val in var_def.items():
+        proposicion = re.sub(rf"\b{var}\b",str(val),proposicion)
 
     proposicion = proposicion.replace('¬','not ')
     proposicion = proposicion.replace('∧',' and ')
@@ -41,14 +53,7 @@ def traducir_proposicion(proposicion:str, var_def: dict[str, bool]) -> bool:
 def evaluar_proposicion(traduccion:str) -> bool:
     print(f"Evaluando: {traduccion}:")
     return eval(traduccion)
-
-
-
-
-
         
-
-###
 proposicion = "¬(p∧q)∧r"
 
 segregacion = segregate(proposicion)

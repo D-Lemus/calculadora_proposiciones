@@ -6,7 +6,7 @@ import logic
 window = tk.Tk()
 window.title("Calculadora Logica")
 
-expression = "¬(p∧q)∧r"
+expression = ""
 
 def add(letter):
     global expression
@@ -110,28 +110,23 @@ def definir_variables(root, vars_usadas, callback):
     tk.Button(popup, text="OK", command=aceptar).pack(pady=10)
 
 
-
-
 def proceso(expression):
     segregar = logic.segregate(expression)
     parentesis = logic.validar_parentesis(segregar)
-    if parentesis:
-        
-        #variables_encontradas = logic.encontrar_variables()
-        variables_usadas = logic.encontrar_variables(segregar)
-        callback = continuar(variables_usadas)
-        variables_definidas = definir_variables(window, variables_usadas,callback)
 
-        def continuar(variables_definidas):
-            traducción = logic.traducir_proposicion(expression,variables_definidas)
-            resultado = logic.evaluar_proposicion(traducción)
-            messagebox.showinfo("Resultado", f"RESULTADO: {resultado}")
+    if not parentesis:
+        messagebox.showerror("Error", "Paréntesis inválidos")
+        return
 
-#a_evaluar = display.get(expression)
+    variables_usadas = logic.encontrar_variables(segregar)
 
-#Boton Valores
-boton_valores = tk.Button(fila2, text="EVALUAR",width=20, command=lambda:add('terminar'))
-boton_valores.pack(side=tk.LEFT, padx=5)
+    def continuar(variables_definidas):
+        traduccion = logic.traducir_proposicion(expression, variables_definidas)
+        resultado = logic.evaluar_proposicion(traduccion)
+        messagebox.showinfo("Resultado", f"RESULTADO: {resultado}")
+
+    definir_variables(window, variables_usadas, continuar)
+
 
 #Boton Calcular 
 boton_calcular = tk.Button(fila2, text="Calcular",width=20, command=lambda:proceso(expression))
